@@ -37,23 +37,45 @@ DREKF2026/
 - Python 3.11
 - numpy, scipy, matplotlib, joblib
 - MOSEK 10.1 SDK (with valid license at `~/mosek/mosek.lic`)
-- pybind11, Eigen3, CMake, MinGW
+- pybind11, Eigen3, CMake
+- A C++17 compiler: MinGW (Windows), GCC (Linux), or Clang (macOS)
 
 ## Building the C++ Module
 
 ```bash
-cd estimator/cpp/build
+mkdir -p estimator/cpp/build && cd estimator/cpp/build
+```
+
+**Windows (MinGW):**
+```bash
 cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release \
   -Dpybind11_DIR="<path-to-pybind11>/share/cmake/pybind11" \
   -DMOSEK_DIR="C:/mosek/mosek/10.1/tools/platform/win64x86"
 cmake --build . --config Release
 ```
 
-The built `dr_ekf_cpp.pyd` must be placed in the project root and/or `estimator/`.
+**Linux:**
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+  -DMOSEK_DIR="$HOME/mosek/mosek/10.1/tools/platform/linux64x86"
+cmake --build . --config Release
+```
+
+**macOS:**
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+  -DMOSEK_DIR="$HOME/mosek/mosek/10.1/tools/platform/osxaarch64"  # Apple Silicon
+# For Intel Mac, use osx64x86 instead
+cmake --build . --config Release
+```
+
+The built module (`.pyd` on Windows, `.so` on Linux/macOS) must be placed in the project root and/or `estimator/`.
+
+> **Note:** The `-Dpybind11_DIR` flag is only needed if CMake cannot find pybind11 automatically. If you installed it via `pip install pybind11`, CMake should detect it.
 
 **Rebuild after C++ changes** (headers, source, or defaults):
 ```bash
-cd estimator/cpp/build && mingw32-make
+cd estimator/cpp/build && cmake --build .
 ```
 
 ## Running Experiments
@@ -83,6 +105,19 @@ py plot0_CT3D.py
 py plot0_withFW_CT_4.py
 py plot1_timeCT3D.py
 ```
+
+## Generating Videos
+
+Animated 3D tracking videos showing the true trajectory (rendered as an airplane) alongside filter estimates. Requires experiment results to be generated first.
+
+```bash
+py video0_CT3D.py          # uses results from main0_CT3D.py
+py video0_withFW_CT3D.py   # uses results from main1_timeCT3D.py
+```
+
+Arguments: `--dist` (normal/quadratic), `--fps` (default 15), `--duration` (seconds, default full trajectory), `--format` (mp4/gif, default mp4)
+
+Each script generates both normal and zoomed views for mean trajectories and up to 5 single simulation instances. MP4 output requires [ffmpeg](https://ffmpeg.org/); GIF uses pillow.
 
 ## Porting to Embedded C++
 

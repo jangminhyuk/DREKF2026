@@ -48,7 +48,7 @@ DR_EKF_CDC::DR_EKF_CDC(
 }
 
 // ============================================================
-// FW Solver (Algorithm 1)
+// FW Solver (Algorithm 1 in DR-MMSE paper)
 // ============================================================
 SDPResult DR_EKF_CDC::solve_sdp_online_fw(const MatXd& X_pred_hat, const MatXd& C_t) {
     MatXd X_pred = X_pred_hat;
