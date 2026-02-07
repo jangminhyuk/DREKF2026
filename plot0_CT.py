@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-plot0_withFW_CT_4.py: Visualization for EKF vs DR-EKF comparison
-from main0_withFW_CT_4.py. Handles 5 filters (EKF + 4 DR methods).
+plot0_CT.py: Visualization for EKF vs DR-EKF comparison
+from main0_CT.py. Handles 5 filters (EKF + 4 DR methods).
 """
 
 import os
@@ -579,7 +579,7 @@ def main():
 
     except FileNotFoundError as e:
         print(f"Error: {e}")
-        print(f"Run main0_withFW_CT_4.py with --dist {args.dist} first.")
+        print(f"Run main0_CT.py with --dist {args.dist} first.")
     except Exception as e:
         print(f"Error: {e}")
         import traceback

@@ -20,13 +20,12 @@ DREKF2026/
 │       │   ├── ekf.h, dynamics.h, kalman_utils.h, fw_oracle.h, types.h
 │       └── src/                # Implementations + pybind11 bindings
 ├── main0_CT3D.py               # 3D coordinated turn — grid search over theta
-├── main0_withFW_CT_4.py        # 2D coordinated turn — grid search over theta
+├── main0_CT.py                 # 2D coordinated turn — grid search over theta
 ├── main1_timeCT3D.py           # 3D coordinated turn — timing comparison
 ├── plot0_CT3D.py               # Plot results from main0_CT3D
-├── plot0_withFW_CT_4.py        # Plot results from main0_withFW_CT_4
+├── plot0_CT.py                 # Plot results from main0_CT
 ├── plot1_timeCT3D.py          # Plot timing results
 ├── video0_CT3D.py              # Animate 3D CT trajectories
-├── video0_withFW_CT3D.py       # Animate 3D CT with FW comparison
 ├── common_utils.py             # Shared utilities (EM estimation, grid search, etc.)
 ├── old_files/                  # Legacy CVXPY-based implementations
 └── results/                    # Experiment output (auto-created)
@@ -87,7 +86,7 @@ py main0_CT3D.py
 
 **Grid search** (2D coordinated turn):
 ```bash
-py main0_withFW_CT_4.py
+py main0_CT.py
 ```
 
 Arguments: `--dist` (normal/quadratic), `--num_sim`, `--num_exp`, `--T_total`, `--T_em`, `--num_samples`
@@ -102,7 +101,7 @@ py main1_timeCT3D.py
 Run the corresponding plot script after an experiment completes:
 ```bash
 py plot0_CT3D.py
-py plot0_withFW_CT_4.py
+py plot0_CT.py
 py plot1_timeCT3D.py
 ```
 
@@ -112,7 +111,6 @@ Animated 3D tracking videos showing the true trajectory (rendered as an airplane
 
 ```bash
 py video0_CT3D.py          # uses results from main0_CT3D.py
-py video0_withFW_CT3D.py   # uses results from main1_timeCT3D.py
 ```
 
 Arguments: `--dist` (normal/quadratic), `--fps` (default 15), `--duration` (seconds, default full trajectory), `--format` (mp4/gif, default mp4)

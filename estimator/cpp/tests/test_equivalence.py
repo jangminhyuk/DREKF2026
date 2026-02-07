@@ -20,7 +20,7 @@ def test_dynamics_ct2d():
 
     # Import Python dynamics
     sys.path.insert(0, project_root)
-    from main0_withFW_CT_4 import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
+    from main0_CT import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
 
     cpp_dyn = dr_ekf_cpp.CT2D(dt=0.2)
 
@@ -200,7 +200,7 @@ def test_ekf_equivalence():
 
     # Python EKF
     from estimator.EKF import EKF
-    from main0_withFW_CT_4 import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
+    from main0_CT import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
 
     py_ekf = EKF(
         T=10, dist='normal', noise_dist='normal',
@@ -268,7 +268,7 @@ def test_dr_ekf_cdc_fw_exact_equivalence():
 
     # Python DR_EKF_CDC
     from estimator.DR_EKF_CDC import DR_EKF_CDC
-    from main0_withFW_CT_4 import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
+    from main0_CT import ct_dynamics, ct_jacobian, radar_observation_function, radar_observation_jacobian
 
     py_dr = DR_EKF_CDC(
         T=10, dist='normal', noise_dist='normal',
