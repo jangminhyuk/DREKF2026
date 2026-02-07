@@ -18,10 +18,10 @@ FILTERS_ORDER = ['EKF', 'DR_EKF_CDC', 'DR_EKF_CDC_FW', 'DR_EKF_TAC', 'DR_EKF_TAC
 
 DISPLAY_NAMES = {
     'EKF': 'EKF',
-    'DR_EKF_CDC': 'CDC-MOSEK',
-    'DR_EKF_CDC_FW': 'CDC-FW',
-    'DR_EKF_TAC': 'TAC-MOSEK',
-    'DR_EKF_TAC_FW': 'TAC-FW',
+    'DR_EKF_CDC': 'DR-EKF (CDC-MOSEK)',
+    'DR_EKF_CDC_FW': 'DR-EKF (CDC-FW)',
+    'DR_EKF_TAC': 'DR-EKF (TAC-MOSEK)',
+    'DR_EKF_TAC_FW': 'DR-EKF (TAC-FW)',
 }
 
 COLORS = {
